@@ -1,0 +1,136 @@
+[gd_scene load_steps=2 format=3 uid="uid://c2hilfkrmg1iq"]
+
+[ext_resource type="Script" path="res://script/ticket.gd" id="1_t4xfq"]
+
+[node name="ticket" type="Node2D"]
+script = ExtResource("1_t4xfq")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0.266667, 0.266667, 0.266667, 1)
+
+[node name="ColorRect" type="ColorRect" parent="ColorRect"]
+layout_mode = 0
+offset_left = 256.0
+offset_top = 56.0
+offset_right = 928.0
+offset_bottom = 544.0
+color = Color(0.356863, 0.356863, 0.356863, 1)
+
+[node name="Label" type="Label" parent="ColorRect/ColorRect"]
+layout_mode = 0
+offset_left = 296.0
+offset_top = 96.0
+offset_right = 379.0
+offset_bottom = 144.0
+theme_override_font_sizes/font_size = 32
+text = "Placa"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Placa" type="Label" parent="ColorRect/ColorRect/Label"]
+layout_mode = 0
+offset_left = -56.0
+offset_top = 56.0
+offset_right = 136.0
+offset_bottom = 88.0
+text = "hsdgsdg"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="labelhora-de-entrada" type="Label" parent="ColorRect/ColorRect"]
+layout_mode = 0
+offset_left = 120.0
+offset_top = 192.0
+offset_right = 296.0
+offset_bottom = 226.0
+theme_override_font_sizes/font_size = 22
+text = "Hora de entrada"
+
+[node name="labelhora-de-saida" type="Label" parent="ColorRect/ColorRect"]
+layout_mode = 0
+offset_left = 376.0
+offset_top = 192.0
+offset_right = 536.0
+offset_bottom = 229.0
+theme_override_font_sizes/font_size = 24
+text = "Hora de saida"
+
+[node name="hora-de-entrada" type="Label" parent="ColorRect/ColorRect"]
+layout_mode = 0
+offset_left = 120.0
+offset_top = 240.0
+offset_right = 296.0
+offset_bottom = 266.0
+text = "22:22"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="hora-de-saida" type="Label" parent="ColorRect/ColorRect"]
+layout_mode = 0
+offset_left = 379.0
+offset_top = 240.0
+offset_right = 536.0
+offset_bottom = 266.0
+text = "22:22"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="ColorRect/ColorRect"]
+layout_mode = 0
+offset_left = 272.0
+offset_top = 432.0
+offset_right = 400.0
+offset_bottom = 472.0
+text = "Voltar"
+
+[node name="Label3" type="Label" parent="ColorRect/ColorRect"]
+layout_mode = 0
+offset_left = 240.0
+offset_top = 16.0
+offset_right = 435.0
+offset_bottom = 107.0
+theme_override_font_sizes/font_size = 60
+text = "TICKET"
+
+[node name="labelhora-de-entrada2" type="Label" parent="ColorRect/ColorRect"]
+layout_mode = 0
+offset_left = 228.0
+offset_top = 272.0
+offset_right = 446.0
+offset_bottom = 306.0
+theme_override_font_sizes/font_size = 22
+text = "Hora de permanecia"
+
+[node name="hora-de-permanecia" type="Label" parent="ColorRect/ColorRect"]
+layout_mode = 0
+offset_left = 228.0
+offset_top = 320.0
+offset_right = 444.0
+offset_bottom = 346.0
+text = "22:22"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label4" type="Label" parent="ColorRect/ColorRect"]
+layout_mode = 0
+offset_left = 280.0
+offset_top = 360.0
+offset_right = 392.0
+offset_bottom = 386.0
+text = "Preço a pagar"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="preco" type="Label" parent="ColorRect/ColorRect"]
+layout_mode = 0
+offset_left = 280.0
+offset_top = 392.0
+offset_right = 392.0
+offset_bottom = 418.0
+text = "gasdgs"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="ColorRect/ColorRect/Button" to="." method="_on_button_pressed"]

@@ -12,9 +12,9 @@ color = Color(0.266667, 0.266667, 0.266667, 1)
 
 [node name="Carro2" type="Button" parent="ColorRect"]
 layout_mode = 0
-offset_left = 936.0
+offset_left = 864.0
 offset_top = 72.0
-offset_right = 1072.0
+offset_right = 1000.0
 offset_bottom = 120.0
 text = "Retirar Carro"
 
@@ -121,6 +121,15 @@ text = ":"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Carro3" type="Button" parent="ColorRect"]
+layout_mode = 0
+offset_left = 1008.0
+offset_top = 72.0
+offset_right = 1144.0
+offset_bottom = 120.0
+text = "Ticket"
+
 [connection signal="pressed" from="ColorRect/Carro2" to="." method="_on_carro_2_pressed"]
 [connection signal="pressed" from="ColorRect/Carro" to="." method="_on_carro_pressed"]
 [connection signal="pressed" from="ColorRect/Matriz" to="." method="_on_matriz_pressed"]
+[connection signal="pressed" from="ColorRect/Carro3" to="." method="_on_carro_3_pressed"]

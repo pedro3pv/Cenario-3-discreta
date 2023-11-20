@@ -1,5 +1,6 @@
 extends Node
 
+var temp_placa
 var time
 var time_real
 var log : Array = []

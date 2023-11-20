@@ -119,7 +119,6 @@ func verificarPlaca(placa : String):
 				log.append("PLACA: " + placa + " DATA DE ENTRADA: "+ date + " ESTADO: Tocantins")
 			else:
 				log.append("PLACA: " + placa + " DATA DE ENTRADA: "+ date + " ESTADO: Desconhecido")
-			Global.carros.append([placa,Global.ocupar_lugar()])
 			var entrada_minutes = (int($ColorRect/Entrada/TextEdit3.text) * 60) + int($ColorRect/Entrada/TextEdit2.text)
 			var saida_minutes = (int($ColorRect/Saida/TextEdit3.text) * 60) + int($ColorRect/Saida/TextEdit2.text)
 			var date_saida = $ColorRect/Saida/TextEdit3.text + ":" + $ColorRect/Saida/TextEdit2.text
@@ -141,6 +140,7 @@ func verificarPlaca(placa : String):
 				minute_perm += 60
 				hora_perm -= 1
 			log.append("SAIDA: "+date_saida+" PAGOU: "+"R$ "+str(preco)+" permaneceu: " + str(hora_perm) + ":" + str(minute_perm))
+			Global.carros.append([placa,Global.ocupar_lugar(),str(hora_perm) + ":" + str(minute_perm),$ColorRect/Entrada/TextEdit3.text + ":" + $ColorRect/Entrada/TextEdit2.text,$ColorRect/Saida/TextEdit3.text  + ":" + $ColorRect/Saida/TextEdit2.text,preco])
 			atualizar_log()
 		elif !(contains_placa):
 			push_error("Caracteres Invalidos")
@@ -151,7 +151,8 @@ func verificarPlaca(placa : String):
 
 func _on_carro_pressed():
 	#print("if (letra_para_numero(placa[0]) >= "+str(letra_para_numero($ColorRect/TextEdit.text[0]))+" and letra_para_numero(placa[1]) >= "+str(letra_para_numero($ColorRect/TextEdit.text[1]))+" and letra_para_numero(placa[2]) >= "+str(letra_para_numero($ColorRect/TextEdit.text[2]))+" and letra_para_numero(placa[0]) <= "+str(letra_para_numero($ColorRect/TextEdit.text[3]))+" and letra_para_numero(placa[1]) <= "+str(letra_para_numero($ColorRect/TextEdit.text[4]))+" and letra_para_numero(placa[2]) <= "+str(letra_para_numero($ColorRect/TextEdit.text[5]))+"):")
-	verificarPlaca($ColorRect/TextEdit.text)
+	if (!$ColorRect/Entrada/TextEdit3.text == null and !$ColorRect/Entrada/TextEdit3.text == ""):
+		verificarPlaca($ColorRect/TextEdit.text)
 
 func _on_matriz_pressed():
 	get_tree().change_scene_to_file("res://matriz.tscn")
@@ -167,3 +168,14 @@ func _on_carro_2_pressed():
 		Global.desocupar_lugar(Global.carros[contains_placa][1][0],Global.carros[contains_placa][1][1])
 		Global.carros.remove_at(contains_placa)
 		atualizar_log()
+
+
+func _on_carro_3_pressed():
+	var contains_placa = null
+	if !(Global.carros == []):
+		for i in range(Global.carros.size()):
+			if (Global.carros[i][0] == $ColorRect/TextEdit.text):
+				contains_placa = i
+	if !($ColorRect/TextEdit.text == null) and !(contains_placa == null):
+		Global.temp_placa = $ColorRect/TextEdit.text
+		get_tree().change_scene_to_file("res://ticket.tscn")

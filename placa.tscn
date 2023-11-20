@@ -11,6 +11,7 @@ offset_bottom = 648.0
 color = Color(0.266667, 0.266667, 0.266667, 1)
 
 [node name="Carro2" type="Button" parent="ColorRect"]
+layout_mode = 0
 offset_left = 936.0
 offset_top = 72.0
 offset_right = 1072.0
@@ -18,6 +19,7 @@ offset_bottom = 120.0
 text = "Retirar Carro"
 
 [node name="Saida" type="Label" parent="ColorRect"]
+layout_mode = 0
 offset_left = 488.0
 offset_top = 64.0
 offset_right = 554.0
@@ -27,6 +29,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="TextEdit2" type="TextEdit" parent="ColorRect/Saida"]
+layout_mode = 0
 offset_left = 224.0
 offset_top = -8.0
 offset_right = 368.0
@@ -34,6 +37,7 @@ offset_bottom = 24.0
 placeholder_text = "Minutos"
 
 [node name="TextEdit3" type="TextEdit" parent="ColorRect/Saida"]
+layout_mode = 0
 offset_left = 72.0
 offset_top = -8.0
 offset_right = 216.0
@@ -92,6 +96,7 @@ vertical_alignment = 1
 metadata/_edit_group_ = true
 
 [node name="TextEdit2" type="TextEdit" parent="ColorRect/Entrada"]
+layout_mode = 0
 offset_left = 224.0
 offset_top = -8.0
 offset_right = 368.0
@@ -99,6 +104,7 @@ offset_bottom = 24.0
 placeholder_text = "Minutos"
 
 [node name="TextEdit3" type="TextEdit" parent="ColorRect/Entrada"]
+layout_mode = 0
 offset_left = 72.0
 offset_top = -8.0
 offset_right = 216.0

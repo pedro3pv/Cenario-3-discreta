@@ -18,7 +18,7 @@ offset_bottom = 648.0
 
 [node name="TextEdit" type="TextEdit" parent="ColorRect"]
 layout_mode = 0
-offset_right = 712.0
+offset_right = 568.0
 offset_bottom = 128.0
 
 [node name="Carro" type="Button" parent="ColorRect"]
@@ -53,23 +53,31 @@ text = "+3 hora"
 
 [node name="time" type="Label" parent="ColorRect"]
 layout_mode = 0
-offset_left = 720.0
-offset_top = 16.0
-offset_right = 856.0
-offset_bottom = 56.0
+offset_left = 576.0
+offset_top = 8.0
+offset_right = 712.0
+offset_bottom = 120.0
 text = "dd/mm/yy 00:00"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Carro2" type="Button" parent="ColorRect"]
+[node name="remover" type="Button" parent="ColorRect"]
+offset_left = 720.0
+offset_top = 8.0
+offset_right = 856.0
+offset_bottom = 56.0
+text = "Remover Carro"
+
+[node name="minute" type="Button" parent="ColorRect"]
 offset_left = 720.0
 offset_top = 72.0
 offset_right = 856.0
 offset_bottom = 120.0
-text = "Remover Carro"
+text = "+5 minutos"
 
 [connection signal="pressed" from="ColorRect/Carro" to="." method="_on_carro_pressed"]
 [connection signal="pressed" from="ColorRect/Matriz" to="." method="_on_matriz_pressed"]
 [connection signal="pressed" from="ColorRect/hora" to="." method="_on_hora_pressed"]
 [connection signal="pressed" from="ColorRect/hora2" to="." method="_on_hora_2_pressed"]
-[connection signal="pressed" from="ColorRect/Carro2" to="." method="_on_carro_pressed"]
+[connection signal="pressed" from="ColorRect/remover" to="." method="_on_remover_pressed"]
+[connection signal="pressed" from="ColorRect/minute" to="." method="_on_minute_pressed"]

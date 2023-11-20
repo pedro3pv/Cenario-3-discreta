@@ -128,13 +128,13 @@ func verificarPlaca(placa : String):
 			print(entrada_minutes)
 			print(saida_minutes)
 			if (diferenca > 15):
-				diferenca -= 15
 				preco += 10
-				if (diferenca > 180):
-					diferenca -=180
-					diferenca /= 60
+				if (diferenca - 15 > 180):
+					diferenca -=195
+					var diferenca2 : float = float(diferenca)/60
+					diferenca = round(diferenca2)
 					preco += (5.50*diferenca)
-					preco = round(preco)
+					preco = preco
 			log.append(" SAIDA: "+date_saida+" PAGOU: "+"R$ "+str(preco)+" permaneceu: ")
 			atualizar_log()
 		elif !(contains_placa):

@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://djdb4vjjlcron"]
+
+[ext_resource type="Script" path="res://script/matriz.gd" id="1_d1xxe"]
+
+[node name="matriz" type="Node2D"]
+script = ExtResource("1_d1xxe")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0.501961, 0.501961, 0.505882, 1)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+visible = false
+position = Vector2(576, 325)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(576, 324)

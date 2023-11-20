@@ -1,0 +1,75 @@
+[gd_scene load_steps=2 format=3 uid="uid://bupc2yl1arjr"]
+
+[ext_resource type="Script" path="res://script/placa.gd" id="1_rca1q"]
+
+[node name="placa" type="Node2D"]
+script = ExtResource("1_rca1q")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0.266667, 0.266667, 0.266667, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect"]
+layout_mode = 0
+offset_top = 128.0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="TextEdit" type="TextEdit" parent="ColorRect"]
+layout_mode = 0
+offset_right = 712.0
+offset_bottom = 128.0
+
+[node name="Carro" type="Button" parent="ColorRect"]
+layout_mode = 0
+offset_left = 864.0
+offset_top = 8.0
+offset_right = 1000.0
+offset_bottom = 56.0
+text = "Adicionar Carro"
+
+[node name="Matriz" type="Button" parent="ColorRect"]
+layout_mode = 0
+offset_left = 1008.0
+offset_top = 8.0
+offset_right = 1144.0
+offset_bottom = 56.0
+text = "Matriz"
+
+[node name="hora" type="Button" parent="ColorRect"]
+offset_left = 1008.0
+offset_top = 72.0
+offset_right = 1144.0
+offset_bottom = 120.0
+text = "+1 hora"
+
+[node name="hora2" type="Button" parent="ColorRect"]
+offset_left = 864.0
+offset_top = 72.0
+offset_right = 1000.0
+offset_bottom = 120.0
+text = "+3 hora"
+
+[node name="time" type="Label" parent="ColorRect"]
+layout_mode = 0
+offset_left = 720.0
+offset_top = 16.0
+offset_right = 856.0
+offset_bottom = 56.0
+text = "dd/mm/yy 00:00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Carro2" type="Button" parent="ColorRect"]
+offset_left = 720.0
+offset_top = 72.0
+offset_right = 856.0
+offset_bottom = 120.0
+text = "Remover Carro"
+
+[connection signal="pressed" from="ColorRect/Carro" to="." method="_on_carro_pressed"]
+[connection signal="pressed" from="ColorRect/Matriz" to="." method="_on_matriz_pressed"]
+[connection signal="pressed" from="ColorRect/hora" to="." method="_on_hora_pressed"]
+[connection signal="pressed" from="ColorRect/hora2" to="." method="_on_hora_2_pressed"]
+[connection signal="pressed" from="ColorRect/Carro2" to="." method="_on_carro_pressed"]

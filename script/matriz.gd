@@ -57,9 +57,12 @@ func _ready():
 func _process(delta):
 	$Button.position.x = camera2d.get_screen_center_position().x + 540
 	$Button.position.y = camera2d.get_screen_center_position().y - 350
+	if Input.is_action_pressed("ui_right"):
+		get_tree().change_scene_to_file("res://placa.tscn")
 
 # Função para gerar objetos no centro em cima dos sprites onde a matriz é verdadeira
 func generate_objects_on_true_positions(sprites, matrix):
+	var sprite_cars = ["res://sprites/carros/carro1.png","res://sprites/carros/carro2.png","res://sprites/carros/carro3.png","res://sprites/carros/carro4.png","res://sprites/carros/carro5.png","res://sprites/carros/carro6.png"]
 	for row in range(rows):
 		for col in range(cols):
 			if matrix[row][col]:
@@ -67,7 +70,7 @@ func generate_objects_on_true_positions(sprites, matrix):
 
 				# Cria um novo objeto para adicionar no centro do sprite
 				var new_object = Sprite2D.new()
-				new_object.texture = load("res://sprites/carros/carro1.png")  # Substitua pela textura desejada
+				new_object.texture = load(sprite_cars[randi() % 6])  # Substitua pela textura desejada
 				new_object.scale = sprite.scale  # Mantém a escala do sprite original
 
 				# Calcula a posição para o novo objeto (centro do sprite)

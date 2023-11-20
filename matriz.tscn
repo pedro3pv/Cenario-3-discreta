@@ -13,6 +13,7 @@ visible = false
 position = Vector2(576, 324)
 
 [node name="Button" type="Button" parent="."]
+visible = false
 offset_left = 1016.0
 offset_right = 1153.0
 offset_bottom = 32.0

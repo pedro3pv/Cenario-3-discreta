@@ -14,8 +14,9 @@ extends Node2D
 
 var log = Global.log
 
-func _process(delta):
-	$ColorRect/time.text = str(Global.time["day"])+"/"+str(Global.time["month"])+"/"+(str(Global.time["year"])[2]+str(Global.time["year"])[3]) + " " +str(Global.time["hour"]) + ":" + str(Global.time["minute"])
+func _ready():
+	var log = Global.log
+	atualizar_log()
 
 func atualizar_log():
 	var text_log = ""
@@ -43,7 +44,8 @@ func letra_para_numero(letra: String) -> int:
 	return codigo_ascii - "a".to_ascii_buffer()[0]
 
 func verificarPlaca(placa : String):
-	var date = str(Global.time["day"])+"/"+str(Global.time["month"])+"/"+(str(Global.time["year"])[2]+str(Global.time["year"])[3]) + " " +str(Global.time["hour"]) + ":" + str(Global.time["minute"])
+	var date = $ColorRect/Entrada/TextEdit3.text + ":" + $ColorRect/Entrada/TextEdit2.text
+	var date_leave = $ColorRect/Saida/TextEdit3.text  + ":" + $ColorRect/Saida/TextEdit2.text
 	if (typeof(placa) == TYPE_STRING and !placa == ""):
 		var contains_placa = false
 		if !(Global.carros == []):
@@ -117,7 +119,23 @@ func verificarPlaca(placa : String):
 				log.append("PLACA: " + placa + " DATA DE ENTRADA: "+ date + " ESTADO: Tocantins")
 			else:
 				log.append("PLACA: " + placa + " DATA DE ENTRADA: "+ date + " ESTADO: Desconhecido")
-			Global.carros.append([placa,Global.time["day"],Global.time["month"],Global.time["year"],Global.time["hour"],Global.time["minute"],Global.ocupar_lugar()])
+			Global.carros.append([placa,Global.ocupar_lugar()])
+			var entrada_minutes = (int($ColorRect/Entrada/TextEdit3.text) * 60) + int($ColorRect/Entrada/TextEdit2.text)
+			var saida_minutes = (int($ColorRect/Saida/TextEdit3.text) * 60) + int($ColorRect/Saida/TextEdit2.text)
+			var date_saida = $ColorRect/Saida/TextEdit3.text + ":" + $ColorRect/Saida/TextEdit2.text
+			var diferenca = saida_minutes - entrada_minutes
+			var preco = 0
+			print(entrada_minutes)
+			print(saida_minutes)
+			if (diferenca > 15):
+				diferenca -= 15
+				preco += 10
+				if (diferenca > 180):
+					diferenca -=180
+					diferenca /= 60
+					preco += (5.50*diferenca)
+					preco = round(preco)
+			log.append(" SAIDA: "+date_saida+" PAGOU: "+"R$ "+str(preco)+" permaneceu: ")
 			atualizar_log()
 		elif !(contains_placa):
 			push_error("Caracteres Invalidos")
@@ -129,52 +147,17 @@ func verificarPlaca(placa : String):
 func _on_carro_pressed():
 	#print("if (letra_para_numero(placa[0]) >= "+str(letra_para_numero($ColorRect/TextEdit.text[0]))+" and letra_para_numero(placa[1]) >= "+str(letra_para_numero($ColorRect/TextEdit.text[1]))+" and letra_para_numero(placa[2]) >= "+str(letra_para_numero($ColorRect/TextEdit.text[2]))+" and letra_para_numero(placa[0]) <= "+str(letra_para_numero($ColorRect/TextEdit.text[3]))+" and letra_para_numero(placa[1]) <= "+str(letra_para_numero($ColorRect/TextEdit.text[4]))+" and letra_para_numero(placa[2]) <= "+str(letra_para_numero($ColorRect/TextEdit.text[5]))+"):")
 	verificarPlaca($ColorRect/TextEdit.text)
-#	print(letra_para_numero($ColorRect/TextEdit.text[0]))
-#	print(letra_para_numero($ColorRect/TextEdit.text[1]))
-#	print(letra_para_numero($ColorRect/TextEdit.text[2]))
-#	print(letra_para_numero($ColorRect/TextEdit.text[3]))
-#	print(letra_para_numero($ColorRect/TextEdit.text[4]))
-#	print(letra_para_numero($ColorRect/TextEdit.text[5]))
-
 
 func _on_matriz_pressed():
 	get_tree().change_scene_to_file("res://matriz.tscn")
 
-
-func _on_hora_pressed():
-	Global.time["hour"] += 1
-
-
-func _on_hora_2_pressed():
-	Global.time["hour"] += 3
-
-
-func _on_remover_pressed():
-	var date = str(Global.time["day"])+"/"+str(Global.time["month"])+"/"+(str(Global.time["year"])[2]+str(Global.time["year"])[3]) + " " +str(Global.time["hour"]) + ":" + str(Global.time["minute"])
-	if (typeof($ColorRect/TextEdit.text[0]) == TYPE_STRING):
-		var contains_placa = 0
-		if !(Global.carros == []):
-			for i in range(Global.carros.size()):
-				if (Global.carros[i][0] == $ColorRect/TextEdit.text):
-					contains_placa = i
-		var preco = 0.00
-		var permaneceu = [Global.time["hour"] - Global.carros[contains_placa][4],Global.time["minute"] - Global.carros[contains_placa][5]]
-		if ((Global.time["minute"] - Global.carros[contains_placa][5] > 15) or (Global.time["hour"] - Global.carros[contains_placa][4] > 0)):
-			Global.carros[contains_placa][4] = Global.time["hour"] - Global.carros[contains_placa][4]
-			if (Global.time["minute"] - Global.carros[contains_placa][5] > 15):
-				Global.carros[contains_placa][5] = Global.time["minute"] - Global.carros[contains_placa][5]
-			preco += 10.00
-			Global.carros[contains_placa][5] -= 15
-			Global.carros[contains_placa][4] -= 3
-			if (Global.carros[contains_placa][4] > 0):
-				preco += (2.50 * Global.carros[contains_placa][4])
-				if (Global.carros[contains_placa][5] > 0):
-					preco += 2.50
-		log.append("PLACA: "+Global.carros[contains_placa][0]+" SAIDA: "+date+" PAGOU: "+"R$ "+str(preco)+" permaneceu: "+str(permaneceu[0])+":"+str(permaneceu[1]))
-		Global.desocupar_lugar(Global.carros[contains_placa][6][0],Global.carros[contains_placa][6][1])
-		Global.carros.remove_at(contains_placa)
-		atualizar_log()
-
-
-func _on_minute_pressed():
-	Global.time["minute"] += 5
+func _on_carro_2_pressed():
+	var contains_placa = 0
+	if !(Global.carros == []):
+		for i in range(Global.carros.size()):
+			if (Global.carros[i][0] == $ColorRect/TextEdit.text):
+				contains_placa = i
+	log.append("Carro Retirado: " + $ColorRect/TextEdit.text)
+	Global.desocupar_lugar(Global.carros[contains_placa][1][0],Global.carros[contains_placa][1][1])
+	Global.carros.remove_at(contains_placa)
+	atualizar_log()

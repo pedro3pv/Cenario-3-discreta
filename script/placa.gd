@@ -131,7 +131,7 @@ func verificarPlaca(placa : String):
 				if (diferenca - 15 > 180):
 					diferenca -=195
 					var diferenca2 : float = float(diferenca)/60
-					diferenca = round(diferenca2)
+					diferenca = ceil(diferenca2)
 					preco += (5.25*diferenca)
 					preco = preco
 			var hora_perm = int($ColorRect/Saida/TextEdit3.text) - int($ColorRect/Entrada/TextEdit3.text)
